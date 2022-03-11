@@ -1,12 +1,11 @@
 package com.at.intership;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Cliente {
     private final String nombre;
     private final String numCliente;
     private final double ingresoMensual;
+
 
     public Cliente(String nombre, String numCliente, double ingresoMensual) {
         this.nombre = nombre;
@@ -26,4 +25,10 @@ public class Cliente {
         return ingresoMensual;
     }
 
+    @Override
+    public String toString() {
+        return "nombre='" + nombre + '\'' +
+                ", numCliente='" + numCliente + '\'' +
+                ", ingresoMensual=" + ingresoMensual;
+    }
 }

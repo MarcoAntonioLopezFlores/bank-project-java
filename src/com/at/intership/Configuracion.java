@@ -1,6 +1,8 @@
 package com.at.intership;
 
 public class Configuracion {
+    private double maxLineaCreditoPorIngresoMensual;
+
     public double getMaxLineaCreditoPorIngresoMensual() {
         return maxLineaCreditoPorIngresoMensual;
     }
@@ -9,5 +11,5 @@ public class Configuracion {
         this.maxLineaCreditoPorIngresoMensual = maxLineaCreditoPorIngresoMensual;
     }
 
-    private double maxLineaCreditoPorIngresoMensual;
+
 }

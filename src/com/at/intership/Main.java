@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) {
         try {
             PropertyHandler.load("/application-default.properties", "application.properties");
-            System.out.println("Welcome...");
-            System.out.println("Enter your credentials...");
+            System.out.println("Bienvenido...");
+            System.out.println("Ingresa tus credenciales...");
 
             String username, password;
 
@@ -25,48 +25,23 @@ public class Main {
                 if(username.equals(PropertyHandler.getStringProperty(PROP_USERNAME)) && password.equals(PropertyHandler.getStringProperty(PROP_PASSWORD))){
                     isLoggedIn = true;
                 }else{
-                    System.err.println("Incorrect username or password\n\n");
+                    System.err.println("Usuario y/o contraseña incorrecta\n\n");
                     tryCount++;
                 }
-
             } while (!isLoggedIn && tryCount < TRY_LIMIT);
 
             if(isLoggedIn) {
-                System.out.printf("Successfully logged in as %s%n", username);
-                runCommandListener();
+                System.out.printf("Inicio de sesión de manera exitosa como  %s%n", username);
+                Menu.runCommandListener();
+            } else{
+                System.err.println("Has alcanzado el limite de intentos");
             }
-            else
-                System.err.println("You have reached your attempts limit");
 
             PropertyHandler.persist();
-            System.out.println("PROGRAM END");
+            System.out.println("Programa finalizado");
         } catch (Exception e) {
             System.err.printf("%s: %s%n", e.getClass().getName(), e.getMessage());
         }
     }
-
-    private static void runCommandListener() {
-        String command;
-        do {
-            System.out.print(">_ ");
-            command = System.console().readLine();
-            switch (command) {
-                case "help":
-                    printHelp();
-                    break;
-
-                case "exit":
-                    break;
-                default:
-                    System.err.printf("\"%s\" is not a recognized command%n", command);
-            }
-        } while(!"exit".equalsIgnoreCase(command));
-    }
-
-    private static void printHelp() {
-        System.out.println("- help\n" +
-                "- exit");
-    }
-
 
 }
