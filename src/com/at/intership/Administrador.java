@@ -79,15 +79,18 @@ public class Administrador {
         System.out.println("Registro éxitoso de cuenta-habiente");
     }
 
-    public void consultarCuentaHabiente(String numCliente){
+    public Cliente consultarCuentaHabiente(String numCliente){
         Cliente cliente = mapaClientes.get(numCliente);
-        if(cliente!=null){
-            System.out.println(cliente);
-        }else{
+        if(cliente==null)
             System.out.println("No existe la cuenta");
-        }
+
+
+        return cliente;
     }
 
+    public void registrarProductoFinanciero(Cliente cliente){
+
+    }
 
 
 }
