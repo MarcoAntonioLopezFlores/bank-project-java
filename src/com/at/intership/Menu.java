@@ -1,8 +1,5 @@
 package com.at.intership;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 public class Menu {
@@ -12,7 +9,7 @@ public class Menu {
     public static void runCommandListener() {
         String command;
         String numCliente;
-        Cliente cliente = null;
+        Cliente cliente;
         do {
             System.out.print(">_ ");
             command = System.console().readLine();
@@ -36,11 +33,12 @@ public class Menu {
                 case "operaciones-productos":
                     int optionChoosen;
                     numCliente = lectura.readString("Ingresa el número de cliente para buscar sus productos: ");
+                    cliente= admin.consultarCuentaHabiente(numCliente);
                     Map<String,ProductoFinanciero> productos = admin.getProductos(numCliente);
-                    imprimirProductos(productos.values());
+                    imprimirProductos(productos.values(), cliente);
                     optionChoosen = lectura.readInteger("¿Desea realizar alguna transacción?\n 1.-Si \n 2.-No");
                     if(optionChoosen==1){
-                        realizarOperacionProducto(productos);
+                        realizarOperacionProducto(productos, cliente);
                     }
                     break;
                 case "salir":
@@ -59,27 +57,28 @@ public class Menu {
                 "- salir");
     }
 
-    public static void imprimirProductos(Collection<ProductoFinanciero> productos){
+    public static void imprimirProductos(Collection<ProductoFinanciero> productos, Cliente cliente){
         if(productos!=null){
+            System.out.println("NOMBRE DE CLIENTE: "+ cliente.getNombre());
             for(ProductoFinanciero producto:productos){
                 producto.imprimirEstadoCuenta();
             }
         }
     }
 
-    public static void realizarOperacionProducto(Map<String, ProductoFinanciero> productos){
+    public static void realizarOperacionProducto(Map<String, ProductoFinanciero> productos, Cliente cliente){
         String idProduct;
         idProduct = lectura.readString("Ingresa el id del producto para realizar alguna operación: ");
         ProductoFinanciero producto = productos.get(idProduct);
         if(producto!=null){
             if(producto instanceof TarjetaCredito){
-                MenuOperacionesTarjeta.runCommandOperations((TarjetaCredito) producto);
+                MenuOperacionesTarjeta.runCommandOperations((TarjetaCredito) producto, cliente);
             }
             if(producto instanceof  CuentaCheques){
-                MenuOperacionesCuentaCheques.runCommandOperations((CuentaCheques) producto);
+                MenuOperacionesCuentaCheques.runCommandOperations((CuentaCheques) producto, cliente);
             }
             if(producto instanceof  CuentaInversion){
-                MenuOperacionesCuentaInversion.runCommandOperations((CuentaInversion) producto);
+                MenuOperacionesCuentaInversion.runCommandOperations((CuentaInversion) producto, cliente);
             }
         }else{
             System.out.println("No existe el ID del producto");

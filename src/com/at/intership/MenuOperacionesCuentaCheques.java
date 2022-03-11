@@ -1,7 +1,7 @@
 package com.at.intership;
 
 public class MenuOperacionesCuentaCheques {
-    public static void runCommandOperations(CuentaCheques cuentaCheques){
+    public static void runCommandOperations(CuentaCheques cuentaCheques, Cliente cliente){
         String command;
         do {
             printOptionsOperations();
@@ -18,7 +18,8 @@ public class MenuOperacionesCuentaCheques {
                     break;
 
                 case "estado":
-cuentaCheques.imprimirEstadoCuenta();
+                    System.out.println("NOMBRE DEL CUENTA-HABIENTE: "+cliente.getNombre());
+                    cuentaCheques.imprimirEstadoCuenta();
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");

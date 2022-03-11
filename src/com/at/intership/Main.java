@@ -1,5 +1,7 @@
 package com.at.intership;
 
+import static com.at.intership.Menu.runCommandListener;
+
 public class Main {
 
     private static final String PROP_USERNAME = "com.at.intership.username";
@@ -32,7 +34,7 @@ public class Main {
 
             if(isLoggedIn) {
                 System.out.printf("Inicio de sesión de manera exitosa como  %s%n", username);
-                Menu.runCommandListener();
+                runCommandListener();
             } else{
                 System.err.println("Has alcanzado el limite de intentos");
             }

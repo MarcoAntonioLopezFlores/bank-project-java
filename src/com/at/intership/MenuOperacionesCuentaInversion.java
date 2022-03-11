@@ -1,7 +1,7 @@
 package com.at.intership;
 
 public class MenuOperacionesCuentaInversion {
-    public static void runCommandOperations(CuentaInversion cuentaInversion){
+    public static void runCommandOperations(CuentaInversion cuentaInversion, Cliente cliente){
         String command;
         do {
             printOptionsOperations();
@@ -9,10 +9,11 @@ public class MenuOperacionesCuentaInversion {
             command = System.console().readLine();
             switch (command) {
                 case "corte":
-cuentaInversion.aplicarCorte();
+                    cuentaInversion.aplicarCorte();
                     break;
                 case "estado":
-cuentaInversion.imprimirEstadoCuenta();
+                    System.out.println("NOMBRE DEL CUENTA-HABIENTE: "+cliente.getNombre());
+                    cuentaInversion.imprimirEstadoCuenta();
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");

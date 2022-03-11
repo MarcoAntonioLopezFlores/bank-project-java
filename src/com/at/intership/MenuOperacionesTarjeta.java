@@ -1,7 +1,7 @@
 package com.at.intership;
 
 public class MenuOperacionesTarjeta {
-    public static void runCommandOperations(TarjetaCredito tarjeta){
+    public static void runCommandOperations(TarjetaCredito tarjeta, Cliente cliente){
         String command;
         do {
             printOptionsOperations();
@@ -17,7 +17,9 @@ public class MenuOperacionesTarjeta {
                     tarjeta.cargarTarjeta(cantidadCargo);
                     break;
                 case "estado":
-tarjeta.imprimirEstadoCuenta();
+                    System.out.println("NOMBRE DEL CUENTA-HABIENTE: "+cliente.getNombre());
+                    tarjeta.imprimirEstadoCuenta();
+
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");
