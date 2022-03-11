@@ -35,18 +35,21 @@ public class Menu {
                     numCliente = lectura.readString("Ingresa el número de cliente para buscar sus productos: ");
                     cliente= admin.consultarCuentaHabiente(numCliente);
                     Map<String,ProductoFinanciero> productos = admin.getProductos(numCliente);
-                    imprimirProductos(productos.values(), cliente);
-                    optionChoosen = lectura.readInteger("¿Desea realizar alguna transacción?\n 1.-Si \n 2.-No");
-                    if(optionChoosen==1){
-                        realizarOperacionProducto(productos, cliente);
+                    if(productos!=null){
+                        imprimirProductos(productos.values(), cliente);
+                        optionChoosen = lectura.readInteger("¿Desea realizar alguna transacción?\n 1.-Si \n 2.-No");
+                        if(optionChoosen==1){
+                            realizarOperacionProducto(productos, cliente);
+                        }
                     }
+
                     break;
                 case "salir":
                     break;
                 default:
                     System.err.printf("\"%s\" no es un comando reconocido%n", command);
             }
-        } while(!"exit".equalsIgnoreCase(command));
+        } while(!"salir".equalsIgnoreCase(command));
     }
 
     public static void printHelp() {
@@ -54,6 +57,7 @@ public class Menu {
                 "- registrar-cuenta-habiente\n"+
                 "- consultar-cuenta-habiente\n"+
                 "- agregar-producto-cuenta-habiente\n"+
+                "- operaciones-productos\n"+
                 "- salir");
     }
 
