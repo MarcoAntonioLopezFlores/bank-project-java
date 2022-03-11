@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class AdministradorProducto {
-    private Configuracion conf;
-    private Map<String, List<ProductoFinanciero>> mapaProductos = new HashMap<>();
+    private final Configuracion conf;
+    private final Map<String, List<ProductoFinanciero>> mapaProductos = new HashMap<>();
 
     public AdministradorProducto(Configuracion conf) {
         this.conf = conf;

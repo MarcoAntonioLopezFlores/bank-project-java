@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Herencia:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Herencia_jar</output-path>
+    <root id="archive" name="Herencia.jar">
+      <element id="module-output" name="Herencia" />
+    </root>
+  </artifact>
+</component>

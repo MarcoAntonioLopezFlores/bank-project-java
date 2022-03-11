@@ -2,7 +2,7 @@ package com.at.intership;
 
 public class CuentaCheques extends CuentaBancaria {
 
-    private double comisionRetiro;
+    private final double comisionRetiro;
 
     public CuentaCheques(double balanceInicial, double comisionRetiro) {
         super(balanceInicial);

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
-    private String nombre;
-    private String numCliente;
-    private double ingresoMensual;
+    private final String nombre;
+    private final String numCliente;
+    private final double ingresoMensual;
 
     public Cliente(String nombre, String numCliente, double ingresoMensual) {
         this.nombre = nombre;
