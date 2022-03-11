@@ -6,7 +6,7 @@ public class TarjetaCredito implements ProductoFinanciero {
     private double saldo;
 
     public TarjetaCredito(String id,double lineaCredito) {
-        this.id =id;
+        this.id = id;
         this.lineaCredito = lineaCredito;
         this.saldo = 0;
     }

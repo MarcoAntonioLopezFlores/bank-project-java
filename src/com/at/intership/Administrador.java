@@ -12,12 +12,7 @@ public class Administrador {
     }
 
     public void agregarProducto(Cliente cliente, ProductoFinanciero producto) {
-        Map<String,ProductoFinanciero> productos = mapaProductos.get(cliente.getNumCliente());
-
-        if(productos == null) {
-            productos = new HashMap<>();
-            mapaProductos.put(cliente.getNumCliente(), productos);
-        }
+        Map<String, ProductoFinanciero> productos = mapaProductos.computeIfAbsent(cliente.getNumCliente(), k -> new HashMap<>());
 
         if(producto instanceof TarjetaCredito) {
             double ingresoMensual = cliente.getIngresoMensual();
@@ -55,6 +50,7 @@ public class Administrador {
     public boolean puedeCancelar(Cliente cliente) {
         Map<String,ProductoFinanciero> productos = getProductos(cliente.getNumCliente());
         boolean resultado = true;
+
         for(ProductoFinanciero pf : productos.values()) {
             if(pf.getSaldo() != 0.0) {
                 resultado = false;

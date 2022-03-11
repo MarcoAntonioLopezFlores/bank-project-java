@@ -64,9 +64,8 @@ public class Menu {
     public static void imprimirProductos(Collection<ProductoFinanciero> productos, Cliente cliente){
         if(productos!=null){
             System.out.println("NOMBRE DE CLIENTE: "+ cliente.getNombre());
-            for(ProductoFinanciero producto:productos){
-                producto.imprimirEstadoCuenta();
-            }
+            productos.forEach(ProductoFinanciero::imprimirEstadoCuenta);
+
         }
     }
 
