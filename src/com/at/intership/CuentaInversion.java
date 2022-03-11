@@ -4,12 +4,13 @@ public class CuentaInversion extends CuentaBancaria {
 
     private final double interesAlCorte;
     private static double IMPUESTO = 0.15;
-    public CuentaInversion(double balanceInicial, double interesAlCorte) {
-        super(balanceInicial);
+    public CuentaInversion(String id,double balanceInicial, double interesAlCorte) {
+        super(id,balanceInicial);
         this.interesAlCorte = interesAlCorte;
     }
 
     public void aplicarCorte() {
+        System.out.println("Aplicando corte....");
         double interesParcial = getBalance() * interesAlCorte;
         double interesFinal = interesParcial - interesParcial * IMPUESTO;
         agregarFondos(interesFinal);

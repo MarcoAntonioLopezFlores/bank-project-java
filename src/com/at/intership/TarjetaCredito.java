@@ -1,11 +1,12 @@
 package com.at.intership;
 
 public class TarjetaCredito implements ProductoFinanciero {
-
+    private String id;
     private final double lineaCredito;
     private double saldo;
 
-    public TarjetaCredito(double lineaCredito) {
+    public TarjetaCredito(String id,double lineaCredito) {
+        this.id =id;
         this.lineaCredito = lineaCredito;
         this.saldo = 0;
     }
@@ -14,6 +15,12 @@ public class TarjetaCredito implements ProductoFinanciero {
         return lineaCredito;
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
     public double getSaldo() {
         return saldo;
     }
@@ -26,10 +33,12 @@ public class TarjetaCredito implements ProductoFinanciero {
     }
 
     public void pagarTarjeta(double importe) {
+        System.out.println("Pagando tarjeta");
         saldo += importe;
     }
 
     public void cargarTarjeta(double importe) {
+        System.out.println("Cargar tarjeta");
         if(saldo - importe < lineaCredito * -1)
             System.out.println("Linea de credito insuficiente");
         else

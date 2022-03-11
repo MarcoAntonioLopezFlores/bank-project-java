@@ -45,4 +45,21 @@ public class LecturaDatos {
 
         return value;
     }
+
+    public int readInteger(String prompt){
+        int value = 0;
+        boolean isNumber;
+        do {
+            isNumber = true;
+            try {
+                System.out.println(prompt);
+                value= Integer.parseInt(System.console().readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("NECESITAS INGRESAR UN VALOR NÚMERICO");
+                isNumber = false;
+            }
+        } while (!isNumber);
+
+        return value;
+    }
 }

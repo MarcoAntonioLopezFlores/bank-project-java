@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Administrador {
     private final Configuracion conf;
-    private final Map<String, List<ProductoFinanciero>> mapaProductos = new HashMap<>();
+    private final Map<String, Map<String,ProductoFinanciero>> mapaProductos = new HashMap<>();
     private final Map<String, Cliente> mapaClientes = new HashMap<>();
 
     public Administrador(Configuracion conf) {
@@ -12,10 +12,10 @@ public class Administrador {
     }
 
     public void agregarProducto(Cliente cliente, ProductoFinanciero producto) {
-        List<ProductoFinanciero> productos = mapaProductos.get(cliente.getNumCliente());
+        Map<String,ProductoFinanciero> productos = mapaProductos.get(cliente.getNumCliente());
 
         if(productos == null) {
-            productos = new ArrayList<>();
+            productos = new HashMap<>();
             mapaProductos.put(cliente.getNumCliente(), productos);
         }
 
@@ -29,7 +29,7 @@ public class Administrador {
         }
         if(producto instanceof CuentaInversion){
             boolean hasCuentaCheques=false;
-            for(ProductoFinanciero pf : productos) {
+            for(ProductoFinanciero pf : productos.values()) {
                 if (pf instanceof CuentaCheques) {
                     hasCuentaCheques = true;
                     break;
@@ -41,22 +41,21 @@ public class Administrador {
             }
         }
 
-        productos.add(producto);
+        productos.put(producto.getId(),producto);
         System.out.println("El producto se añadio con éxito");
     }
 
-    public List<ProductoFinanciero> getProductos(String numCliente) {
-        List<ProductoFinanciero> productos = mapaProductos.get(numCliente);
+    public Map<String,ProductoFinanciero> getProductos(String numCliente) {
+        Map<String,ProductoFinanciero> productos = mapaProductos.get(numCliente);
 
         if(productos == null) System.out.println("El cliente no tiene productos asignados");
-
         return productos;
     }
 
     public boolean puedeCancelar(Cliente cliente) {
-        List<ProductoFinanciero> productos = getProductos(cliente.getNumCliente());
+        Map<String,ProductoFinanciero> productos = getProductos(cliente.getNumCliente());
         boolean resultado = true;
-        for(ProductoFinanciero pf : productos) {
+        for(ProductoFinanciero pf : productos.values()) {
             if(pf.getSaldo() != 0.0) {
                 resultado = false;
                 pf.imprimirEstadoCuenta();
@@ -88,8 +87,39 @@ public class Administrador {
         return cliente;
     }
 
-    public void registrarProductoFinanciero(Cliente cliente){
+    public void registrarCuentaCheque(Cliente cliente){
+        LecturaDatos lecturaDatos = new LecturaDatos();
+        String id;
+        double balanceInicial,comisionRetiro;
+        id = lecturaDatos.readString("Ingresa el id del producto: ");
+        balanceInicial = lecturaDatos.readDouble("Ingresa balance inicial de la cuenta: ");
+        comisionRetiro = lecturaDatos.readDouble("Ingresa la comisión de retiro (Ejemplo: 0.05): ");
 
+        CuentaCheques cuentaCheques = new CuentaCheques(id,balanceInicial, comisionRetiro);
+        agregarProducto(cliente, cuentaCheques);
+    }
+
+    public void registrarCuentaInversion(Cliente cliente){
+        LecturaDatos lecturaDatos = new LecturaDatos();
+        String id;
+        double balanceInicial,interesCorte;
+        id = lecturaDatos.readString("Ingresa el id del producto: ");
+        balanceInicial = lecturaDatos.readDouble("Ingresa balance inicial de la cuenta: ");
+        interesCorte = lecturaDatos.readDouble("Ingresa el interes al corte (Ejemplo: 0.05): ");
+
+        CuentaInversion cuentaInversion = new CuentaInversion(id,balanceInicial, interesCorte);
+        agregarProducto(cliente, cuentaInversion);
+    }
+
+    public void registrarTarjetaCredito(Cliente cliente){
+        LecturaDatos lecturaDatos = new LecturaDatos();
+        String id;
+        double lineaCredito;
+        id = lecturaDatos.readString("Ingresa el id del producto: ");
+        lineaCredito = lecturaDatos.readDouble("Ingresa la linea de credito: ");
+
+        TarjetaCredito tarjetaCredito = new TarjetaCredito(id,lineaCredito);
+        agregarProducto(cliente, tarjetaCredito);
     }
 
 
