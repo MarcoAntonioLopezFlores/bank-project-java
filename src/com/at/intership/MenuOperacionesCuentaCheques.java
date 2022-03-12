@@ -35,6 +35,6 @@ public class MenuOperacionesCuentaCheques {
         System.out.println("- retiro\n" +
                 "- agregar\n"+
                 "- estado\n"+
-                "- regresar (Regresar al menu principal)");
+                "- regresar (Regresar al menú principal)");
     }
 }

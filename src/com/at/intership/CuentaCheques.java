@@ -18,9 +18,10 @@ public class CuentaCheques extends CuentaBancaria {
 
     @Override
     public void imprimirEstadoCuenta() {
-        System.out.println("Estado de Cuenta de Cheques...");
+        System.out.println("Estado de Cuenta - Cuenta Cheques");
+        System.out.println("Identificador: "+ getId());
         System.out.println("Balance actual: " + getBalance());
-        System.out.println("Comision retiro: " + comisionRetiro);
+        System.out.println("Comisión retiro: " + comisionRetiro);
     }
 
 

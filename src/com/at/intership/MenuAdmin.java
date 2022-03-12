@@ -104,7 +104,7 @@ public class MenuAdmin {
 
     public static void realizarOperacionProducto(Map<String, ProductoFinanciero> productos, Cliente cliente){
         String idProduct;
-        idProduct = lectura.readString("Ingresa el id del producto para realizar alguna operación: ");
+        idProduct = lectura.readString("Ingresa el ID del producto para realizar alguna operación: ");
         ProductoFinanciero producto = productos.get(idProduct);
         if(producto!=null){
             if(producto instanceof TarjetaCredito){

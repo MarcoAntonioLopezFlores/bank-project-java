@@ -34,6 +34,6 @@ public class MenuOperacionesTarjeta {
         System.out.println("- pago\n" +
                 "- cargo\n"+
                 "- estado\n"+
-                "- regresar (Regresar al menu principal)");
+                "- regresar (Regresar al menú principal)");
     }
 }

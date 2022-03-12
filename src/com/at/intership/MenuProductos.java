@@ -32,7 +32,7 @@ public class MenuProductos {
         System.out.println("- cuenta-cheques\n" +
                 "- cuenta-inversion\n"+
                 "- tarjeta-credito\n"+
-                "- regresar (Regresar al menu principal)");
+                "- regresar (Regresar al menú principal)");
     }
 
 

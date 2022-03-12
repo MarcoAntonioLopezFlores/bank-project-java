@@ -28,6 +28,6 @@ public class MenuOperacionesCuentaInversion {
     public static void printOptionsOperations(){
         System.out.println("- corte\n" +
                 "- estado\n"+
-                "- regresar (Regresar al menu principal)");
+                "- regresar (Regresar al menú principal)");
     }
 }

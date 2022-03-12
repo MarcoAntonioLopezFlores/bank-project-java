@@ -14,11 +14,13 @@ public class CuentaInversion extends CuentaBancaria {
         double interesParcial = getBalance() * interesAlCorte;
         double interesFinal = interesParcial - interesParcial * IMPUESTO;
         agregarFondos(interesFinal);
+        System.out.println("Ahora el balance es: "+getBalance());
     }
 
     @Override
     public void imprimirEstadoCuenta() {
-        System.out.println("Estado de Cuenta de Inversión ...");
+        System.out.println("Estado de Cuenta - Cuenta Inversión");
+        System.out.println("Identificador: "+getId());
         System.out.println("Balance: " + getBalance());
         System.out.println("Tasa de Interés: " + interesAlCorte);
     }

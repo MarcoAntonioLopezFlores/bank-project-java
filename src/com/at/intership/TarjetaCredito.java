@@ -24,6 +24,7 @@ public class TarjetaCredito implements ProductoFinanciero {
     @Override
     public void imprimirEstadoCuenta() {
         System.out.println("Estado de Cuenta - Tarjeta de Credito");
+        System.out.println("Identificador: "+getId());
         System.out.println("Saldo: " + saldo);
         System.out.println("Línea de crédito: " + lineaCredito);
     }
@@ -36,7 +37,7 @@ public class TarjetaCredito implements ProductoFinanciero {
     public void cargarTarjeta(double importe) {
         System.out.println("Cargar tarjeta");
         if(saldo - importe < lineaCredito * -1)
-            System.out.println("Linea de credito insuficiente");
+            System.out.println("Línea de crédito insuficiente");
         else
             saldo -= importe;
     }
