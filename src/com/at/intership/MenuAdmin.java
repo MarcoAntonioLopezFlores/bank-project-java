@@ -87,6 +87,10 @@ public class MenuAdmin {
                 "- operaciones-productos\n"+
                 "- eliminar-producto\n"+
                 "- configurar-linea-credito\n"+
+                "- configurar-impuesto\n"+
+                "- configurar-comision-cuenta-cheques\n"+
+                "- configurar-interes-cuenta-inversion\n"+
+                "- configurar-credito-tarjeta\n"+
                 "- salir");
     }
 
