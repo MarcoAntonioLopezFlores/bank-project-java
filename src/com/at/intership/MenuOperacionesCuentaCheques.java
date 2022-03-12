@@ -9,11 +9,11 @@ public class MenuOperacionesCuentaCheques {
             command = System.console().readLine();
             switch (command) {
                 case "retiro":
-                    double retiro = Menu.lectura.readDouble("Ingresa la cantidad a retirar: ");
+                    double retiro = MenuAdmin.lectura.readDouble("Ingresa la cantidad a retirar: ");
                     cuentaCheques.reducirFondos(retiro);
                     break;
                 case "agregar":
-                    double agregado = Menu.lectura.readDouble("Ingresa la cantidad a agregar: ");
+                    double agregado = MenuAdmin.lectura.readDouble("Ingresa la cantidad a agregar: ");
                     cuentaCheques.agregarFondos(agregado);
                     break;
 
@@ -23,7 +23,7 @@ public class MenuOperacionesCuentaCheques {
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");
-                    Menu.printHelp();
+                    MenuAdmin.printHelp();
                     break;
                 default:
                     System.err.printf("\"%s\" no es un comando reconocido%n", command);

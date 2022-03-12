@@ -10,17 +10,17 @@ public class MenuProductos {
             command = System.console().readLine();
             switch (command) {
                 case "cuenta-cheques":
-                    Menu.admin.registrarCuentaCheque(cliente);
+                    MenuAdmin.admin.registrarCuentaCheque(cliente);
                     break;
                 case "cuenta-inversion":
-                    Menu.admin.registrarCuentaInversion(cliente);
+                    MenuAdmin.admin.registrarCuentaInversion(cliente);
                     break;
                 case "tarjeta-credito":
-                    Menu.admin.registrarTarjetaCredito(cliente);
+                    MenuAdmin.admin.registrarTarjetaCredito(cliente);
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");
-                    Menu.printHelp();
+                    MenuAdmin.printHelp();
                     break;
                 default:
                     System.err.printf("\"%s\" no es un comando reconocido%n", command);

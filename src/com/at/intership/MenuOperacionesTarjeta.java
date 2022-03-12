@@ -9,21 +9,20 @@ public class MenuOperacionesTarjeta {
             command = System.console().readLine();
             switch (command) {
                 case "pago":
-                    double pago = Menu.lectura.readDouble("Ingresa la cantidad a pagar: ");
+                    double pago = MenuAdmin.lectura.readDouble("Ingresa la cantidad a pagar: ");
                     tarjeta.pagarTarjeta(pago);
                     break;
                 case "cargo":
-                    double cantidadCargo = Menu.lectura.readDouble("Ingresa la cantidad del cargo: ");
+                    double cantidadCargo = MenuAdmin.lectura.readDouble("Ingresa la cantidad del cargo: ");
                     tarjeta.cargarTarjeta(cantidadCargo);
                     break;
                 case "estado":
                     System.out.println("NOMBRE DEL CUENTA-HABIENTE: "+cliente.getNombre());
                     tarjeta.imprimirEstadoCuenta();
-
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");
-                    Menu.printHelp();
+                    MenuAdmin.printHelp();
                     break;
                 default:
                     System.err.printf("\"%s\" no es un comando reconocido%n", command);

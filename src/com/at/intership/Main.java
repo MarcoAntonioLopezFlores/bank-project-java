@@ -33,7 +33,7 @@ public class Main {
 
             if(isLoggedIn) {
                 System.out.printf("Inicio de sesión de manera exitosa como  %s%n", username);
-                Menu.runCommandListener();
+                MenuAdmin.runCommandListener();
             } else{
                 System.err.println("Has alcanzado el limite de intentos");
             }

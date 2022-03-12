@@ -2,7 +2,7 @@ package com.at.intership;
 import java.util.Collection;
 import java.util.Map;
 
-public class Menu {
+public class MenuAdmin {
     public static Configuracion conf = new Configuracion(20000);
     public static Administrador admin = new Administrador(conf);
     public static  LecturaDatos lectura = new LecturaDatos();
@@ -37,13 +37,16 @@ public class Menu {
                     Map<String,ProductoFinanciero> productos = admin.getProductos(numCliente);
                     if(productos!=null){
                         imprimirProductos(productos.values(), cliente);
-                        optionChoosen = lectura.readInteger("¿Desea realizar alguna transacción?\n 1.-Si \n 2.-No");
+                        optionChoosen = lectura.readInteger("¿Desea realizar alguna transacción?\n 1.-Si \n Cualquier otra número.-Cancelar");
                         if(optionChoosen==1){
                             realizarOperacionProducto(productos, cliente);
                         }
                     }
-
                     break;
+                case "eliminar-producto":
+                    numCliente = lectura.readString("Ingresa el número de cliente: ");
+                    boolean estatusEliminado = admin.cancelarProducto(numCliente);
+                    if (estatusEliminado) System.out.println("Producto eliminado con éxito");
                 case "salir":
                     break;
                 default:
@@ -58,6 +61,7 @@ public class Menu {
                 "- consultar-cuenta-habiente\n"+
                 "- agregar-producto-cuenta-habiente\n"+
                 "- operaciones-productos\n"+
+                "- eliminar-producto\n"+
                 "- salir");
     }
 

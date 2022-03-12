@@ -17,7 +17,7 @@ public class MenuOperacionesCuentaInversion {
                     break;
                 case "regresar":
                     System.out.println("HAS REGRESADO AL MENÚ DE COMANDOS INICIALES");
-                    Menu.printHelp();
+                    MenuAdmin.printHelp();
                     break;
                 default:
                     System.err.printf("\"%s\" no es un comando reconocido%n", command);

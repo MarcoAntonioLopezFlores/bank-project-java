@@ -47,17 +47,35 @@ public class Administrador {
         return productos;
     }
 
-    public boolean puedeCancelar(Cliente cliente) {
-        Map<String,ProductoFinanciero> productos = getProductos(cliente.getNumCliente());
-        boolean resultado = true;
+    public boolean cancelarProducto(String numCliente) {
+        LecturaDatos lectura = new LecturaDatos();
+        int optionChoosen;
+        String idProducto;
+        boolean fueEliminado = false, puedeEliminar;
+        Map<String,ProductoFinanciero> productos;
 
-        for(ProductoFinanciero pf : productos.values()) {
-            if(pf.getSaldo() != 0.0) {
-                resultado = false;
-                pf.imprimirEstadoCuenta();
+        productos = getProductos(numCliente);
+        if(productos!=null){
+            idProducto = lectura.readString("Ingresa el id del producto a eliminar: ");
+            ProductoFinanciero producto = productos.get(idProducto);
+            puedeEliminar= producto != null && producto.getSaldo() == 0.0;
+
+            if(puedeEliminar){
+                optionChoosen = lectura.readInteger("¿Desea continuar, toda la información sera eliminada de forma permanente?\n 1.-Continuar \n Cualquier otra número.-Cancelar");
+                if(optionChoosen==1){
+                    productos.remove(idProducto);
+                    fueEliminado=true;
+                }
+            }else {
+                if(producto!=null) {
+                    System.out.println("El producto del cliente "+ numCliente+" cuenta con saldo por lo cual no puede ser eliminado");
+                    producto.imprimirEstadoCuenta();
+                } else {
+                    System.out.println("El ID del producto no existe");
+                }
             }
         }
-        return resultado;
+        return fueEliminado;
     }
 
     public void registrarCuentaHabiente(){
@@ -89,7 +107,7 @@ public class Administrador {
         double balanceInicial,comisionRetiro;
         id = lecturaDatos.readString("Ingresa el id del producto: ");
         balanceInicial = lecturaDatos.readDouble("Ingresa balance inicial de la cuenta: ");
-        comisionRetiro = lecturaDatos.readDouble("Ingresa la comisión de retiro (Ejemplo: 0.05): ");
+        comisionRetiro = lecturaDatos.readDouble("Ingresa la comisión de retiro (Ejemplo: 18.5): ");
 
         CuentaCheques cuentaCheques = new CuentaCheques(id,balanceInicial, comisionRetiro);
         agregarProducto(cliente, cuentaCheques);
