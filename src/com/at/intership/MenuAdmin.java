@@ -53,10 +53,22 @@ public class MenuAdmin {
                     if (estatusEliminado) System.out.println("Producto eliminado con éxito");
                     break;
                 case "configurar-linea-credito":
-                    admin.configurarLineaCredito();
+                    admin.configurarMaxLineaCreditoPorIngresoMensual();
                     break;
                 case "configurar-impuesto":
                     admin.configurarImpuesto();
+                    break;
+                case "configurar-comision-cuenta-cheques":
+                    numCliente = lectura.readString("Ingresa el número de cliente: ");
+                    admin.configurarComision(numCliente);
+                    break;
+                case "configurar-interes-cuenta-inversion":
+                    numCliente = lectura.readString("Ingresa el número de cliente: ");
+                    admin.configurarInteres(numCliente);
+                    break;
+                case "configurar-credito-tarjeta":
+                    numCliente = lectura.readString("Ingresa el número de cliente: ");
+                    admin.configurarLineaCredito(numCliente);
                     break;
                 case "salir":
                     break;

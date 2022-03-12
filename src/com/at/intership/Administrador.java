@@ -168,10 +168,71 @@ public class Administrador {
         System.out.println("Se ha configurado correctamente el nuevo impuesto por interes generados en cuentas de inversión ("+CuentaInversion.getImpuesto()+")");
     }
 
-    public void configurarLineaCredito() {
+    public void configurarMaxLineaCreditoPorIngresoMensual() {
         LecturaDatos lectura = new LecturaDatos();
         double nuevaLineaCredito = lectura.readDouble("Ingresa el nuevo valor para la linea de credito: ");
         conf.setMaxLineaCreditoPorIngresoMensual(nuevaLineaCredito);
         System.out.println("Se ha configurado correctamente el nuevo máximo de linea de credito por ingreso mensual ("+conf.getMaxLineaCreditoPorIngresoMensual()+")");
     }
+
+    public void configurarComision(String numCliente){
+        LecturaDatos lectura = new LecturaDatos();
+        String idProducto;
+        Map<String,ProductoFinanciero> productos;
+        productos = getProductos(numCliente);
+
+        if(productos!=null) {
+            idProducto = lectura.readString("Ingresa el id del producto a modificar comisión: ");
+            ProductoFinanciero producto = productos.get(idProducto);
+            if(producto instanceof CuentaCheques){
+                CuentaCheques cuenta = ((CuentaCheques) producto);
+                double nuevaComision = lectura.readDouble("Ingresa la nueva comisión al realizar un retiro para esta cuenta: ");
+                cuenta.setComisionRetiro(nuevaComision);
+                System.out.println("Se ha configurado correctamente la nueva comisión ("+cuenta.getComisionRetiro()+") para la cuenta del num. cliente "+ numCliente);
+            }else{
+                System.out.println("Verifica que exista el ID o que el producto sea una cuenta de cheques");
+            }
+        }
+    }
+
+    public void configurarInteres(String numCliente){
+        LecturaDatos lectura = new LecturaDatos();
+        String idProducto;
+        Map<String,ProductoFinanciero> productos;
+        productos = getProductos(numCliente);
+
+        if(productos!=null) {
+            idProducto = lectura.readString("Ingresa el id del producto a modificar interes: ");
+            ProductoFinanciero producto = productos.get(idProducto);
+            if(producto instanceof CuentaInversion){
+                CuentaInversion cuenta = ((CuentaInversion) producto);
+                double nuevoInteres = lectura.readDouble("Ingresa el nuevo interes al realizar cortes para esta cuenta: ");
+                cuenta.setInteresAlCorte(nuevoInteres);
+                System.out.println("Se ha configurado correctamente el nuevo interes al corte ("+cuenta.getInteresAlCorte()+") para la cuenta del num. cliente "+ numCliente);
+            }else{
+                System.out.println("Verifica que exista el ID o que el producto sea una cuenta de inversióm");
+            }
+        }
+    }
+
+    public void configurarLineaCredito(String numCliente){
+        LecturaDatos lectura = new LecturaDatos();
+        String idProducto;
+        Map<String,ProductoFinanciero> productos;
+        productos = getProductos(numCliente);
+
+        if(productos!=null) {
+            idProducto = lectura.readString("Ingresa el id del producto a modificar linea de credito: ");
+            ProductoFinanciero producto = productos.get(idProducto);
+            if(producto instanceof TarjetaCredito){
+                TarjetaCredito tarjetaCredito = ((TarjetaCredito) producto);
+                double nuevoCredito = lectura.readDouble("Ingresa la nueva linea de crédito para esta tarjeta: ");
+                 tarjetaCredito.setLineaCredito(nuevoCredito);
+                System.out.println("Se ha configurado correctamente la nueva linea de crédito ("+tarjetaCredito.getLineaCredito()+") para la tarjeta del num. cliente "+ numCliente);
+            }else{
+                System.out.println("Verifica que exista el ID o que el producto sea una tarjeta de crédito");
+            }
+        }
+    }
+
 }
