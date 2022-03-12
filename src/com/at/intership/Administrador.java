@@ -97,8 +97,33 @@ public class Administrador {
         if(cliente==null)
             System.out.println("No existe la cuenta");
 
-
         return cliente;
+    }
+
+    public void eliminarCuentaHabiente(String numCliente){
+        Map<String,ProductoFinanciero> productos;
+        Cliente cliente = consultarCuentaHabiente(numCliente);
+        boolean puedeEliminar=true;
+        if(cliente!=null){
+            productos = getProductos(numCliente);
+            if(productos!=null){
+                for (ProductoFinanciero producto:productos.values()) {
+                    if(producto.getSaldo()!=0.0){
+                        puedeEliminar=false;
+                        break;
+                    }
+                }
+            }
+
+            if(puedeEliminar){
+                System.out.println("La cuenta de "+cliente.getNombre()+" con el num. de cliente "+cliente.getNumCliente()+" se ha dado de baja correctamente");
+                mapaClientes.remove(numCliente);
+            }else{
+                System.out.println("La cuenta de "+cliente.getNombre()+" no puede ser dada de baja ya que tiene productos con saldo aún");
+                productos.values().forEach(ProductoFinanciero::imprimirEstadoCuenta);
+            }
+        }
+
     }
 
     public void registrarCuentaCheque(Cliente cliente){
@@ -136,5 +161,17 @@ public class Administrador {
         agregarProducto(cliente, tarjetaCredito);
     }
 
+    public void configurarImpuesto(){
+        LecturaDatos lectura = new LecturaDatos();
+        double nuevoImpuesto = lectura.readDouble("Ingresa el nuevo valor para la linea de credito: ");
+        CuentaInversion.setImpuesto(nuevoImpuesto);
+        System.out.println("Se ha configurado correctamente el nuevo impuesto por interes generados en cuentas de inversión ("+CuentaInversion.getImpuesto()+")");
+    }
 
+    public void configurarLineaCredito() {
+        LecturaDatos lectura = new LecturaDatos();
+        double nuevaLineaCredito = lectura.readDouble("Ingresa el nuevo valor para la linea de credito: ");
+        conf.setMaxLineaCreditoPorIngresoMensual(nuevaLineaCredito);
+        System.out.println("Se ha configurado correctamente el nuevo máximo de linea de credito por ingreso mensual ("+conf.getMaxLineaCreditoPorIngresoMensual()+")");
+    }
 }

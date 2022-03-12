@@ -2,7 +2,7 @@ package com.at.intership;
 
 public class CuentaCheques extends CuentaBancaria {
 
-    private final double comisionRetiro;
+    private double comisionRetiro;
 
     public CuentaCheques(String id,double balanceInicial, double comisionRetiro) {
         super(id,balanceInicial);
@@ -24,5 +24,11 @@ public class CuentaCheques extends CuentaBancaria {
     }
 
 
+    public double getComisionRetiro() {
+        return comisionRetiro;
+    }
 
+    public void setComisionRetiro(double comisionRetiro) {
+        this.comisionRetiro = comisionRetiro;
+    }
 }

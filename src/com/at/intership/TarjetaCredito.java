@@ -2,17 +2,13 @@ package com.at.intership;
 
 public class TarjetaCredito implements ProductoFinanciero {
     private final String id;
-    private final double lineaCredito;
+    private double lineaCredito;
     private double saldo;
 
     public TarjetaCredito(String id,double lineaCredito) {
         this.id = id;
         this.lineaCredito = lineaCredito;
         this.saldo = 0;
-    }
-
-    public double getLineaCredito() {
-        return lineaCredito;
     }
 
     @Override
@@ -45,4 +41,10 @@ public class TarjetaCredito implements ProductoFinanciero {
             saldo -= importe;
     }
 
+    public double getLineaCredito() {
+        return lineaCredito;
+    }
+    public void setLineaCredito(double lineaCredito) {
+        this.lineaCredito = lineaCredito;
+    }
 }

@@ -2,7 +2,7 @@ package com.at.intership;
 
 public class CuentaInversion extends CuentaBancaria {
 
-    private final double interesAlCorte;
+    private double interesAlCorte;
     private static double IMPUESTO = 0.15;
     public CuentaInversion(String id,double balanceInicial, double interesAlCorte) {
         super(id,balanceInicial);
@@ -31,5 +31,11 @@ public class CuentaInversion extends CuentaBancaria {
         return IMPUESTO;
     }
 
+    public double getInteresAlCorte() {
+        return interesAlCorte;
+    }
 
+    public void setInteresAlCorte(double interesAlCorte) {
+        this.interesAlCorte = interesAlCorte;
+    }
 }

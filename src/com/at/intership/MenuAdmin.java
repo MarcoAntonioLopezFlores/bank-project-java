@@ -25,6 +25,10 @@ public class MenuAdmin {
                     cliente = admin.consultarCuentaHabiente(numCliente);
                     if(cliente!=null) System.out.println(cliente);
                     break;
+                case "eliminar-cuenta-habiente":
+                    numCliente = lectura.readString("Ingresa el número de cliente: ");
+                    admin.eliminarCuentaHabiente(numCliente);
+                    break;
                 case "agregar-producto-cuenta-habiente":
                     numCliente = lectura.readString("Ingresa el número de cliente al cual se le asignará el producto: ");
                     cliente= admin.consultarCuentaHabiente(numCliente);
@@ -47,6 +51,13 @@ public class MenuAdmin {
                     numCliente = lectura.readString("Ingresa el número de cliente: ");
                     boolean estatusEliminado = admin.cancelarProducto(numCliente);
                     if (estatusEliminado) System.out.println("Producto eliminado con éxito");
+                    break;
+                case "configurar-linea-credito":
+                    admin.configurarLineaCredito();
+                    break;
+                case "configurar-impuesto":
+                    admin.configurarImpuesto();
+                    break;
                 case "salir":
                     break;
                 default:
@@ -59,9 +70,11 @@ public class MenuAdmin {
         System.out.println("- ayuda\n" +
                 "- registrar-cuenta-habiente\n"+
                 "- consultar-cuenta-habiente\n"+
+                "- eliminar-cuenta-habiente\n"+
                 "- agregar-producto-cuenta-habiente\n"+
                 "- operaciones-productos\n"+
                 "- eliminar-producto\n"+
+                "- configurar-linea-credito\n"+
                 "- salir");
     }
 
